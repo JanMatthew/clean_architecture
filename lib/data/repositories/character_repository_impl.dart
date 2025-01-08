@@ -11,7 +11,8 @@ class CharacterRepositoryImpl implements CharacterRepository {
       return Right(characterModels .map((model) => Character(
         name: model.name,
         house: model.house, 
-        image: model.image
+        image: model.image,
+        wand: model.wand
       )) 
       .toList());
     } 

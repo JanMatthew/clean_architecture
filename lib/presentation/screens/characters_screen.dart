@@ -69,8 +69,9 @@ class _CharacterScreenState extends State<CharactersScreen> {
                         final character = state.characters[index]; 
                         return ListTile( 
                           leading: Image.network(character.image), 
-                          title: Text(character.name), 
-                          subtitle: Text(character.house), 
+                          title: Text(character.name + character.wand.wood), 
+                          subtitle: Text(character.house),
+                          
                         ); 
                       }, 
                     ); 
