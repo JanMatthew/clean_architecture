@@ -1,8 +1,14 @@
+import 'package:clean_architecture/presentation/blocs/login/login_event.dart';
+import 'package:clean_architecture/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart'; 
 import 'package:flutter_bloc/flutter_bloc.dart'; 
 import 'package:clean_architecture/presentation/blocs/characters/characters_bloc.dart'; 
 import 'package:clean_architecture/presentation/blocs/characters/characters_event.dart'; 
 import 'package:clean_architecture/presentation/blocs/characters/characters_state.dart'; 
+import 'package:clean_architecture/presentation/blocs/login/login_bloc.dart';
+import 'package:clean_architecture/presentation/blocs/login/login_event.dart';
+import 'package:clean_architecture/presentation/blocs/login/login_state.dart';
+import 'package:go_router/go_router.dart';
 class CharactersScreen extends StatefulWidget { 
   const CharactersScreen({super.key}); 
   @override State<CharactersScreen> createState() => _CharacterScreenState(); 
@@ -15,7 +21,18 @@ class _CharacterScreenState extends State<CharactersScreen> {
   } 
   @override Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: const Text('Personajes de Harry Potter')), 
+      appBar: AppBar(
+        title: const Text('Personajes de Harry Potter'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.exit_to_app),
+            onPressed: () {
+              context.read<LoginBloc>().add(LogoutButtonPressed());
+              context.go('/login');
+            },
+          )
+        ],
+      ), 
       body: Column( 
         children: [ 
           Padding( 
