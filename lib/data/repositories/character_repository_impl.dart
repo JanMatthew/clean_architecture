@@ -1,3 +1,4 @@
+import 'package:clean_architecture/domain/entities/magicwand.dart';
 import 'package:dartz/dartz.dart'; 
 import 'package:clean_architecture/data/datasources/character_remote_datasource.dart'; 
 import 'package:clean_architecture/domain/entities/character.dart'; 
@@ -12,12 +13,16 @@ class CharacterRepositoryImpl implements CharacterRepository {
         name: model.name,
         house: model.house, 
         image: model.image,
-        wand: model.wand
+        wand: magicwand(
+          wood: model.wand.wood, 
+          core: model.wand.core, 
+          length: model.wand.length
+          )
       )) 
       .toList());
     } 
     catch (e) {
-       return Left(Exception('Error al cargar personajes'));
+       return Left(Exception('Error al cargar personajes. Impl'));
     }
   }
 }
